@@ -210,6 +210,7 @@ func printClock(t time.Time) {
 	h1, h2 := number2ascii(t.Hour())
 	m1, m2 := number2ascii(t.Minute())
 	s1, s2 := number2ascii(t.Second())
+	shouldRenderColon := t.Second()%2 == 0
 
 	for i := 0; i < rows; i++ {
 		for _, v := range h1[i] {
@@ -223,7 +224,11 @@ func printClock(t time.Time) {
 		fmt.Printf(" ")
 
 		for _, v := range colon[i] {
-			fmt.Printf("%c", v)
+			if shouldRenderColon {
+				fmt.Printf("%c", v)
+			} else {
+				fmt.Printf(" ")
+			}
 		}
 		fmt.Printf(" ")
 
@@ -238,7 +243,11 @@ func printClock(t time.Time) {
 		fmt.Printf(" ")
 
 		for _, v := range colon[i] {
-			fmt.Printf("%c", v)
+			if shouldRenderColon {
+				fmt.Printf("%c", v)
+			} else {
+				fmt.Printf(" ")
+			}
 		}
 		fmt.Printf(" ")
 
