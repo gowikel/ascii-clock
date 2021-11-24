@@ -206,7 +206,7 @@ func convertStringToPlaceholders(f string) []placeholder {
 			if n >= 0 && n <= 9 {
 				els[i] = digits[n]
 			} else {
-				panic(fmt.Sprintf("Invalid character; %c", v))
+				panic(fmt.Sprintf("Invalid character: %c", v))
 			}
 		}
 	}
