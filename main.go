@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 	"time"
 )
 
@@ -178,46 +177,28 @@ var space = placeholder{
 	"               ",
 }
 
-func strDigit2ascii(d byte) [11]string {
-	switch d {
-	case '0':
-		return zero
-	case '1':
-		return one
-	case '2':
-		return two
-	case '3':
-		return three
-	case '4':
-		return four
-	case '5':
-		return five
-	case '6':
-		return six
-	case '7':
-		return seven
-	case '8':
-		return eight
-	default:
-		return nine
-	}
+var digits = []placeholder{
+	zero,
+	one,
+	two,
+	three,
+	four,
+	five,
+	six,
+	seven,
+	eight,
+	nine,
 }
 
-func number2ascii(n int) (a, b [11]string) {
-	str := strconv.Itoa(n)
+func number2ascii(n int) (a, b placeholder) {
 	if n < 0 || n > 59 {
 		panic("number2ascii can only be used with numbers from 0 to 59")
 	}
 
-	if n < 10 {
-		a = zero
-		b = strDigit2ascii(str[0])
-	} else {
-		a = strDigit2ascii(str[0])
-		b = strDigit2ascii(str[1])
-	}
+	leftDigit := n / 10
+	rightDigit := n % 10
 
-	return a, b
+	return digits[leftDigit], digits[rightDigit]
 }
 
 func printClock(t time.Time) {
