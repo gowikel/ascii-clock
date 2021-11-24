@@ -214,8 +214,8 @@ func convertStringToPlaceholders(f string) []placeholder {
 	return els
 }
 
-// Returns a formated ascii. Valid characters are digits from 0 to 9,
-// colon and a space ' '.
+// Returns a formated ascii string based on the specified format.
+// f is a string contaning digits, spaces or colons
 func Format(f string) string {
 	var sb strings.Builder
 	els := convertStringToPlaceholders(f)
